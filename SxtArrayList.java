@@ -19,13 +19,7 @@ public class SxtArrayList {
 	//创建一个有参的构造方法
 	public SxtArrayList(int initialCapacity){
 		//判断参数正负，捕获异常
-		if (initialCapacity<0){
-			try{
-			throw new Exception();
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
+		RangeCheck(initialCapacity);
 		//设定数组的大小
 		elementData=new Object[initialCapacity];
 	}
@@ -42,19 +36,18 @@ public class SxtArrayList {
 		elementData[size++]=obj;
 		
 	}
-	public static void main(String[] args){
-		SxtArrayList list=new SxtArrayList();
-		list.add("2222");
-		list.add("12");
-		list.add("23");
-		list.add("36");
-		list.add("55");
-		System.out.println(list.get(4));
+	//判断正负
+	private void RangeCheck(int index){
+		if (index<0){
+			try{
+			throw new Exception();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
-	
-	
 	public Object get(int index){
-		if (index<0||index>=size)
+		if (index>=size)
 		try{
 			throw new Exception();
 		}catch(Exception e){
@@ -64,8 +57,55 @@ public class SxtArrayList {
 	}
 	
 	public void remove(int index){
+		RangeCheck(index);
 		//删除指定位置对象
+		int numMoved=size-index-1;
+		if(index>0){
+			System.arraycopy(elementData,index+1,elementData,index,numMoved);
+			elementData[--size]=null;
+		}
+	}
+	public void remove(Object obj){
+		for(int i=1;i<size;i++){
+			if(get(i).equals(obj)){
+				remove(i);
+			}
+		}
+	}
+	public void set(int index,Object obj){
+		RangeCheck(index);
+		elementData[index]=obj;
 	}
 	
+	public void add(int index,Object obj){
+		ensureCapacity();
+		RangeCheck(index);
+		System.arraycopy(elementData,index,elementData,index+1,size-index);
+		elementData[index]=obj;
+		size++;
+	}
+	
+	private void ensureCapacity(){
+		//数组扩容和数据的拷贝
+		if(size==elementData.length){
+			Object[] newArray=new Object[size*2];
+			System.arraycopy(elementData,0,newArray,0,elementData.length);
+//			for(int i=0;i<elementData.length;i++){
+//				newArray[i]=elementData[i];
+//			}
+		}
+	}
+	public static void main(String[] args){
+		SxtArrayList list=new SxtArrayList();
+		list.add("2222");
+		list.add("12");
+		list.add("23");
+		list.add("36");
+		list.add("55");
+		list.add(1,"23456");
+		for(int i=0;i<list.size;i++){3.
+			System.out.println(list.get(i));
+		}
+	}
 	
 }

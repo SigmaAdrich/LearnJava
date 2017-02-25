@@ -37,7 +37,7 @@ public class SxtArrayList {
 		
 	}
 	//ÅÐ¶ÏÕý¸º
-	private void RangeCheck(int index){
+	 public void RangeCheck(int index){
 		if (index<0){
 			try{
 			throw new Exception();
@@ -103,9 +103,7 @@ public class SxtArrayList {
 		list.add("36");
 		list.add("55");
 		list.add(1,"23456");
-		for(int i=0;i<list.size;i++){3.
-			System.out.println(list.get(i));
-		}
+
 	}
 	
 }

@@ -1,42 +1,44 @@
 package collection;
 
 public class Node {
-	//用来表示一个节点
-	private Object previous;
-	private Object obj;
-	private Object next;
-	
-	
-	
-	
-		public Node(){
-			
-		}
+	// 用来表示一个节点
+	Node previous;// 上一个下一个节点用节点类型
+	Object obj;
+	Node next;
 
-		public Node(Object previous, Object obj, Object next) {
-			super();
-			this.previous = previous;
-			this.obj = obj;
-			this.next = next;
-		}
-		
-		public Object getPrevious() {
-			return previous;
-		}
-		public void setPrevious(Object previous) {
-			this.previous = previous;
-		}
-		public Object getObj() {
-			return obj;
-		}
-		public void setObj(Object obj) {
-			this.obj = obj;
-		}
-		public Object getNext() {
-			return next;
-		}
-		public void setNext(Object next) {
-			this.next = next;
-		}
+	public Node getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(Node previous) {
+		this.previous = previous;
+	}
+
+	public Object getObj() {
+		return obj;
+	}
+
+	public void setObj(Object obj) {
+		this.obj = obj;
+	}
+
+	public Node getNext() {
+		return next;
+	}
+
+	public void setNext(Node next) {
+		this.next = next;
+	}
+
+	public Node() {
+
+	}
+
+	public Node(Node previous, Object obj, Node next) {
+		super();
+		this.previous = previous;
+		this.obj = obj;
+		this.next = next;
+	}
 
 }
